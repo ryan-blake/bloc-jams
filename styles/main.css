@@ -29,11 +29,6 @@ body {
     max-width: 34rem;
 }
 
-/* Medium screens(640px) */
-@media (min-width: 640px) {
-  html { font-size: 112%; }
-}
-
 .column {
       float: left;
       padding-left: 1rem;
@@ -46,8 +41,24 @@ body {
      .column.third { width: 33.3%; }
      .column.fourth { width: 25%; }
      .column.flow-opposite { float: right; }
-     
+
+/* Medium screens(640px) */
+@media (min-width: 640px) {
+  html { font-size: 112%; }
+}
+
+
 /* Large screens (1024px) */
 @media (min-width: 1024px) {
   html { font-size: 120%; }
+}
+
+.clearfix::before,
+.clearfix::after {
+   content: " ";
+   display: table;
+}
+
+.clearfix::after {
+   clear: both;
 }
