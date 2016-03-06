@@ -72,6 +72,10 @@ background-color: white;
     max-width: 34rem;
 }
 
+.container.narrow {
+    max-width: 56rem;
+}
+
 .column {
       float: left;
       padding-left: 1rem;
