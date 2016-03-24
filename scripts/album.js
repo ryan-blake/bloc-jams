@@ -68,7 +68,7 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 var setCurrentAlbum = function(album) {
 
     // #2
-    albumTitle.firstChild.nodeValue = album.title;
+    albumTitle.firstChild.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
     albumImage.setAttribute('src', album.albumArtUrl);
