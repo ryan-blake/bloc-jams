@@ -1,10 +1,10 @@
 // Example Album .function pulls info from.
 var albumPicasso = {
-    title: 'The Colors',
+    title: 'The cool',
     artist: 'Pablo Picasso',
     label: 'Cubism',
     year: '1881',
-    albumArtUrl: 'assets/images/album_covers/01.png',
+    albumArtUrl: 'assets/images/album_covers/03.png',
     songs: [
         { title: 'Blue', duration: '4:26' },
         { title: 'Green', duration: '3:14' },
@@ -35,7 +35,7 @@ var albumRyan = {
     artist: 'Parconi',
     label: 'me',
     year: '1990',
-    albumArtUrl: 'assets/images/album_covers/03.png',
+    albumArtUrl: 'assets/images/album_covers/05.png',
     songs: [
         { title: 'Hello, sunshine?', duration: '1:01' },
         { title: 'Ring, rang, ring', duration: '5:01' },
@@ -66,7 +66,6 @@ var albumImage = document.getElementsByClassName('album-cover-art')[0];
 var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album) {
-
     // #2
     albumTitle.firstChild.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -83,10 +82,12 @@ var setCurrentAlbum = function(album) {
 };
 
 window.onload = function() {
-    setCurrentAlbum(albumPicasso);
+    setCurrentAlbum(albumRyan);
     var albums = [albumPicasso, albumMarconi, albumRyan];
-    var index = 1;
+    var index = 2;
+
     albumImage.addEventListener("click", function(event) {
+
        setCurrentAlbum(albums[index]);
        index++;
        if (index == albums.length) {
