@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 var collectionItemTemplate =
     '<div class="collection-album-container column fourth">'
   + '  <img src="assets/images/album_covers/01.png"/>'
+=======
+// album template
+var collectionItemTemplate =
+    '<div class="collection-album-container column fourth">'
+  + '  <img src="assets/images/album_covers/03.png"/>'
+>>>>>>> check_26
   + '  <div class="collection-album-info caption">'
   + '    <p>'
   + '      <a class="album-name" href="/album.html"> The Colors </a>'
@@ -13,6 +20,7 @@ var collectionItemTemplate =
   + '  </div>'
   + '</div>'
   ;
+<<<<<<< HEAD
   window.onload = function() {
      // #1
      var collectionContainer = document.getElementsByClassName('album-covers')[0];
@@ -23,3 +31,17 @@ var collectionItemTemplate =
         collectionContainer.innerHTML += collectionItemTemplate;
      }
  }
+=======
+// add albums to collection page with template variable
+  window.onload = function() {
+    // #1
+    var collectionContainer = document.getElementsByClassName('album-covers')[0];
+    // #2
+    collectionContainer.innerHTML = '';
+
+    // #3
+    for (var i = 0; i < 12; i++) {
+        collectionContainer.innerHTML += collectionItemTemplate;
+    }
+}
+>>>>>>> check_26
