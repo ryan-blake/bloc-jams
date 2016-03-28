@@ -136,53 +136,53 @@ var clickHandler = function(targetElement) {
 
 window.onload = function() {
 
+  setCurrentAlbum(albumPicasso);
+  var albums = [albumPicasso, albumMarconi, albumRyan];
+  var index = 1;
+
+  var albumImage = document.getElementsByClassName('album-cover-art')[0];
+
+  albumImage.addEventListener("click", function(event) {
+     setCurrentAlbum(albums[index]);
+     index++;
+     if (index == albums.length) {
+       index = 0;
+     }
+  });
+
   var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
   var songRows = document.getElementsByClassName('album-view-song-item');
 
   var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 // click event playing song
-var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
+  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
 // Store state of playing songs
-var currentlyPlayingSong = null;
+  var currentlyPlayingSong = null;
 
 
   songListContainer.addEventListener('mouseover', function(event) {
          // #1
       if (event.target.parentElement.className === 'album-view-song-item') {
         event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
-           }
-       });
+      }
+  });
 
 
-       for (var i = 0; i < songRows.length; i++) {
-           songRows[i].addEventListener('mouseleave', function(event) {
-             var songItem = getSongItem(event.target);
-                         var songItemNumber = songItem.getAttribute('data-song-number');
+ for (var i = 0; i < songRows.length; i++) {
+    songRows[i].addEventListener('mouseleave', function(event) {
+       var songItem = getSongItem(event.target);
+       var songItemNumber = songItem.getAttribute('data-song-number');
 
-                         // #2
-                         if (songItemNumber !== currentlyPlayingSong) {
-                             songItem.innerHTML = songItemNumber;
-                         }
-        });
-
-        songRows[i].addEventListener('click', function(event) {
-          clickHandler(event.target);
-               });
-
-        }
-    setCurrentAlbum(albumPicasso);
-    var albums = [albumPicasso, albumMarconi, albumRyan];
-    var index = 1;
-
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-
-    albumImage.addEventListener("click", function(event) {
-
-       setCurrentAlbum(albums[index]);
-       index++;
-       if (index == albums.length) {
-         index = 0;
+       // #2
+       if (songItemNumber !== currentlyPlayingSong) {
+           songItem.innerHTML = songItemNumber;
        }
     });
+
+    songRows[i].addEventListener('click', function(event) {
+      clickHandler(event.target);
+    });
+  }
+
 };
