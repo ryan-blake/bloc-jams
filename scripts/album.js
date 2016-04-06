@@ -7,11 +7,11 @@ var albumPicasso = {
     year: '1881',
     albumArtUrl: 'assets/images/album_covers/03.png',
     songs: [
-        { title: 'Blue', duration: '4:26' },
-        { title: 'Green', duration: '3:14' },
-        { title: 'Red', duration: '5:01' },
-        { title: 'Pink', duration: '3:21'},
-        { title: 'Magenta', duration: '2:15'}
+      { title: 'Blue', duration: '4:26' },
+      { title: 'Green', duration: '3:14' },
+      { title: 'Red', duration: '5:01' },
+      { title: 'Pink', duration: '3:21'},
+      { title: 'Magenta', duration: '2:15'}
     ]
 };
 
@@ -23,11 +23,11 @@ var albumMarconi = {
     year: '1909',
     albumArtUrl: 'assets/images/album_covers/20.png',
     songs: [
-        { title: 'Hello, Operator?', duration: '1:01' },
-        { title: 'Ring, ring, ring', duration: '5:01' },
-        { title: 'Fits in your pocket', duration: '3:21'},
-        { title: 'Can you hear me now?', duration: '3:14' },
-        { title: 'Wrong phone number', duration: '2:15'}
+      { title: 'Hello, Operator?', duration: '1:01' },
+      { title: 'Ring, ring, ring', duration: '5:01' },
+      { title: 'Fits in your pocket', duration: '3:21'},
+      { title: 'Can you hear me now?', duration: '3:14' },
+      { title: 'Wrong phone number', duration: '2:15'}
     ]
 };
 
@@ -38,27 +38,27 @@ var albumRyan = {
     year: '1990',
     albumArtUrl: 'assets/images/album_covers/05.png',
     songs: [
-        { title: 'Hello, sunshine?', duration: '1:01' },
-        { title: 'Ring, rang, ring', duration: '5:01' },
-        { title: 'Fits in no pockets', duration: '3:21'},
-        { title: 'Can we hear me us?', duration: '3:14' },
-        { title: 'Wrong tele number', duration: '2:15'}
+      { title: 'Hello, sunshine?', duration: '1:01' },
+      { title: 'Ring, rang, ring', duration: '5:01' },
+      { title: 'Fits in no pockets', duration: '3:21'},
+      { title: 'Can we hear me us?', duration: '3:14' },
+      { title: 'Wrong tele number', duration: '2:15'}
     ]
 };
 
 
 //generates song row content
-var createSongRow = function(songNumber, songName, songLength) {
+var createSongRow = function (songNumber, songName, songLength) {
 
-    var template =
-       '<tr class="album-view-song-item">'
-     + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
-     + '  <td class="song-item-title">' + songName + '</td>'
-     + '  <td class="song-item-duration">' + songLength + '</td>'
-     + '</tr>'
-     ;
+  var template =
+     '<tr class="album-view-song-item">'
+   + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
+   + '  <td class="song-item-title">' + songName + '</td>'
+   + '  <td class="song-item-duration">' + songLength + '</td>'
+   + '</tr>'
+   ;
 
-    return template;
+  return template;
 
 };
 
@@ -83,17 +83,21 @@ var setCurrentAlbum = function(album) {
     }
 };
 
-var findParentByClassName = function(element, targetClass) {
-  if (element) {
-    var currentParent = element.parentElement;
+var child = document.getElementsByClassName('album-view-title')['0'];
+var noParent = document.querySelector('html');
 
-    while (currentParent.className != targetClass) {
-        currentParent = currentParent.parentElement;
+var findParentByClassName = function(element, targetClass)  {
+    if (element) {
+        var currentParent = element.parentElement;
+        while (currentParent.className != targetClass) {
+            currentParent = currentParent.parentElement;
+        }
+        return currentParent;
     }
-
-    return currentParent;
-  }
 };
+
+
+findParentByClassName(child, 'album-view-title');
 
 var getSongItem = function(element) {
    switch (element.className) {
@@ -114,21 +118,21 @@ var getSongItem = function(element) {
 };
 
 var clickHandler = function(targetElement) {
+
   var songItem = getSongItem(targetElement);
 
-  if (currentlyPlayingSong === null) {
-    songItem.innerHTML = pauseButtonTemplate;
-    currentlyPlayingSong = songItem.getAttribute('data-song-number');
-  } else if (currentlyPlayingSong === songItem.getAttribute('data-song-number')) {
-    songItem.innerHTML = playButtonTemplate;
-    currentlyPlayingSong = null;
-  } else if (currentlyPlayingSong !== songItem.getAttribute('data-song-number')) {
-    var currentlyPlayingSongElement = document.querySelector('[data-song-number="' + currentlyPlayingSong + '"]');
-
-    currentlyPlayingSongElement.innerHTML = currentlyPlayingSongElement.getAttribute('data-song-number');
-    songItem.innerHTML = pauseButtonTemplate;
-    currentlyPlayingSong = songItem.getAttribute('data-song-number');
-  }
+   if (currentlyPlayingSong === null) {
+       songItem.innerHTML = pauseButtonTemplate;
+       currentlyPlayingSong = songItem.getAttribute('data-song-number');
+   } else if (currentlyPlayingSong === songItem.getAttribute('data-song-number')) {
+       songItem.innerHTML = playButtonTemplate;
+       currentlyPlayingSong = null;
+   } else if (currentlyPlayingSong !== songItem.getAttribute('data-song-number')) {
+       var currentlyPlayingSongElement = document.querySelector('[data-song-number="' + currentlyPlayingSong + '"]');
+       currentlyPlayingSongElement.innerHTML = currentlyPlayingSongElement.getAttribute('data-song-number');
+       songItem.innerHTML = pauseButtonTemplate;
+       currentlyPlayingSong = songItem.getAttribute('data-song-number');
+   }
 
 };
 
@@ -164,22 +168,19 @@ window.onload = function() {
 
 
   songListContainer.addEventListener('mouseover', function(event) {
-         // #1
-      if (event.target.parentElement.className === 'album-view-song-item') {
+
+    if (event.target.parentElement.className === 'album-view-song-item') {
       var songItem = getSongItem(event.target);
-
-        if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
-          songItem.innerHTML = playButtonTemplate;
-        }
+      if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
+        songItem.innerHTML = playButtonTemplate;
       }
-
+    }
   });
 
 
   for (var i = 0; i < songRows.length; i++) {
     songRows[i].addEventListener('mouseleave', function(event) {
       var songItem = getSongItem(event.target);
-      
       var songItemNumber = songItem.getAttribute('data-song-number');
 
       if (songItemNumber !== currentlyPlayingSong) {
