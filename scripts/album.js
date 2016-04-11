@@ -113,6 +113,9 @@ var getSongItem = function(element) {
        return findParentByClassName(element, 'album-view-song-item').querySelector('song-item-number');
       case 'song-item-number':
        return element;
+      //  assign 27
+      // case (null)
+      //   return alert("no parent has been found")
       default:
         return;
     }
