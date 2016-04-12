@@ -110,7 +110,7 @@ var getSongItem = function(element) {
         return element.querySelector('.song-item-number');
       case 'song-item-title':
       case 'song-item-duration':
-       return findParentByClassName(element, 'album-view-song-item').querySelector('song-item-number');
+       return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
       case 'song-item-number':
        return element;
       //  assign 27
