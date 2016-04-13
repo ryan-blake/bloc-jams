@@ -46,23 +46,9 @@ body.landing {
   opacity: .0;
   -webkit-transform: scaleX(0.9) translateY(3rem);
   -moz-transform: scaleX(0.9) translateY(3rem);
-<<<<<<< HEAD
-  transform: scaleX(0.1) translateY(9rem);
-  transform: rotate(-30deg);
-  -webkit-transition: all 0.25s ease-in-out;
-=======
   transform: scaleX(0.9) translateY(3rem);
   -webkit-transition: all 0.50s ease-in-out;
->>>>>>> check_26
-  -moz-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-  -webkit-transition-delay: 0.2s;
-  -moz-transition-delay: 0.2s;
-  transition-delay: 0.4s;
-<<<<<<< HEAD
-  transition-duration: 2s;
-=======
->>>>>>> check_26
+
 }
 
 .point .point-title {
