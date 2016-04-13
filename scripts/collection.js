@@ -1,5 +1,6 @@
 // album template
-var collectionItemTemplate =
+var buildCollectionItemTemplate = function() {
+    var template =
     '<div class="collection-album-container column fourth">'
   + '  <img src="assets/images/album_covers/03.png"/>'
   + '  <div class="collection-album-info caption">'
@@ -14,15 +15,20 @@ var collectionItemTemplate =
   + '  </div>'
   + '</div>'
   ;
+
+  return $(template);
+};
 // add albums to collection page with template variable
-  window.onload = function() {
-    // #1
-    var collectionContainer = document.getElementsByClassName('album-covers')[0];
-    // #2
-    collectionContainer.innerHTML = '';
+$(window).load(function() {
+    // #3
+    var $collectionContainer = $('.album-covers');
+    // #4
+    $collectionContainer.empty();
 
     // #3
     for (var i = 0; i < 12; i++) {
-        collectionContainer.innerHTML += collectionItemTemplate;
+      var $newThumbnail = buildCollectionItemTemplate();
+      $collectionContainer.append($newThumbnail);
+
     }
-}
+});
