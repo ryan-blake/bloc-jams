@@ -46,6 +46,7 @@ var albumRyan = {
     ]
 };
 
+$(document).ready(function() {
 
 //generates song row content
 var createSongRow = function (songNumber, songName, songLength) {
@@ -59,9 +60,26 @@ var createSongRow = function (songNumber, songName, songLength) {
    ;
 
  var $row = $(template);
+
+
  var clickHandler = function() {
-       // clickHandler logic
-   };
+   var songNumber = $(this).attr('data-song-number');
+
+   	if (currentlyPlayingSong !== null) {
+   		// Revert to song number for currently playing song because user started playing new song.
+   		var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSong + '"]');
+   		currentlyPlayingCell.html(currentlyPlayingSong);
+   	}
+   	if (currentlyPlayingSong !== songNumber) {
+   		// Switch from Play -> Pause button to indicate new song is playing.
+   		$(this).html(pauseButtonTemplate);
+   		currentlyPlayingSong = songNumber;
+   	} else if (currentlyPlayingSong === songNumber) {
+   		// Switch from Pause -> Play button to pause currently playing song.
+   		$(this).html(playButtonTemplate);
+   		currentlyPlayingSong = null;
+   	}
+  };
 
  var onHover = function(event) {
    var songNumberCell = $(this).find('.song-item-number');
@@ -83,10 +101,11 @@ var createSongRow = function (songNumber, songName, songLength) {
 
   $row.find('.song-item-number').click(clickHandler);
   $row.hover(onHover, offHover);
-
     return $row;
 
 };
+var currentlyPlayingSong = null;
+
 
 
 var setCurrentAlbum = function(album) {
@@ -100,7 +119,6 @@ var setCurrentAlbum = function(album) {
   $albumArtist.text(album.artist);
   $albumReleaseInfo.text(album.year + ' ' + album.label);
   $albumImage.attr('src', album.albumArtUrl);
-
   $albumSongList.empty();
 
     for (var i = 0; i < album.songs.length; i++) {
@@ -116,7 +134,6 @@ var noParent = document.querySelector('html');
 
 
 
-$(document).ready(function() {
   setCurrentAlbum(albumPicasso);
   var albums = [albumPicasso, albumMarconi, albumRyan];
   var index = 1;
@@ -136,7 +153,6 @@ $(document).ready(function() {
   var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
 // Store state of playing songs
-  var currentlyPlayingSong = null;
 
 
 });
