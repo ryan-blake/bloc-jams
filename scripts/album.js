@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   var setSong = function(songNumber) {
-     currentlyPlayingSong = parseInt(songNumber);
+     currentlyPlayingSongNumber = parseInt(songNumber);
      currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
   };
 
@@ -27,7 +27,7 @@ var createSongRow = function (songNumber, songName, songLength) {
 
  var clickHandler = function() {
    var songNumber = $(this).attr('data-song-number');
-   	if (currentlyPlayingSong !== null) {
+   	if (currentlyPlayingSongNumber !== null) {
    		// Revert to song number for currently playing song because user started playing new song.
    		var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
    		currentlyPlayingCell.html(currentlyPlayingSong);
@@ -37,13 +37,11 @@ var createSongRow = function (songNumber, songName, songLength) {
    		$(this).html(pauseButtonTemplate);
       setSong(songNumber);
       updatePlayerBarSong();
-   	} else if (currentlyPlayingSong === songNumber) {
+   	} else if (currentlyPlayingSongNumber === songNumber) {
    		// Switch from Pause -> Play button to pause currently playing song.
    		$(this).html(playButtonTemplate);
       $('.main-controls .play-pause').html(playerBarPlayButton);
-// check if below is necessary. also monitor if new null interchangable
-   		currentlyPlayingSong = null;
-      // ^^^
+
       currentlyPlayingSongNumber = null;
       currentSongFromAlbum = null;
 
@@ -55,7 +53,7 @@ var createSongRow = function (songNumber, songName, songLength) {
    var songNumberCell = $(this).find('.song-item-number');
    var songNumber = parseInt($(this).attr('data-song-number'));
 
-    if (songNumber !== currentlyPlayingSong) {
+    if (songNumber !== currentlyPlayingSongNumber) {
         songNumberCell.html(playButtonTemplate);
     }
   };
@@ -63,7 +61,7 @@ var createSongRow = function (songNumber, songName, songLength) {
  var offHover = function(event) {
    var songNumberCell = $(this).find('.song-item-number');
    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
-    if (songNumber !== currentlyPlayingSong) {
+    if (songNumber !== currentlyPlayingSongNumber) {
         songNumberCell.html(songNumber);
     }
   };
