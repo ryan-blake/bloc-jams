@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 
 //generates song row content
@@ -53,15 +51,12 @@ var createSongRow = function (songNumber, songName, songLength) {
 
     if (songNumber !== currentlyPlayingSong) {
         songNumberCell.html(playButtonTemplate);
-        console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
-
     }
   };
 
  var offHover = function(event) {
    var songNumberCell = $(this).find('.song-item-number');
-   var songNumber = parseInt($(this).attr('data-song-number'));
-
+   var songNumber = parseInt(songNumberCell.attr('data-song-number'));
     if (songNumber !== currentlyPlayingSong) {
         songNumberCell.html(songNumber);
     }
@@ -94,11 +89,11 @@ var setCurrentAlbum = function(album) {
   $albumImage.attr('src', album.albumArtUrl);
   $albumSongList.empty();
 
-    for (var i = 0; i < album.songs.length; i++) {
-      var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
-             $albumSongList.append($newRow)
-      }
-};
+  for (var i = 0; i < album.songs.length; i++) {
+    var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+      $albumSongList.append($newRow)
+    }
+  };
 
 var trackIndex = function(album, song) {
     return album.songs.indexOf(song);
@@ -135,7 +130,6 @@ var noParent = document.querySelector('html');
      if (index == albums.length) {
        index = 0;
      }
-
   });
 
 
